@@ -1,0 +1,103 @@
+$body-font: Arial, Helvetica, sans-serif;
+$base-font-size: 11pt;
+$text-color: #000;
+$body-bg: #fff;
+$max-width: 8.5in;
+$margin-left-small: 0.58in;
+$margin-left-section: 0.22in;
+$margin-left-employer: 1.5in;
+$margin-left-bullets: 0.76in;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $body-font;
+  font-size: $base-font-size;
+  color: $text-color;
+  background: $body-bg;
+  padding: 1in;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+/* NAME */
+.name {
+  font-size: 20pt;
+  font-style: italic;
+  font-weight: bold;
+  margin-left: $margin-left-small;
+  margin-bottom: 2px;
+}
+
+/* CONTACT */
+.contact {
+  font-size: $base-font-size;
+  margin-left: $margin-left-small;
+  margin-bottom: 14px;
+}
+
+/* SECTION HEADERS */
+.section-header {
+  font-size: 12pt;
+  font-weight: bold;
+  margin-left: $margin-left-section;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+/* JOB ROW: date + title on same line */
+.job-row {
+  margin-bottom: 0;
+  white-space: nowrap;
+
+  .dates {
+    display: inline-block;
+    min-width: 5.5em;
+  }
+}
+
+/* EMPLOYER LINE — indented, italic */
+.employer {
+  margin-left: $margin-left-employer;
+  font-style: italic;
+  margin-bottom: 2px;
+}
+
+/* BULLET LIST */
+ul.bullets {
+  margin-left: $margin-left-bullets;
+  padding-left: 1em;
+  margin-bottom: 6px;
+
+  li {
+    margin-bottom: 2px;
+    line-height: 1.4;
+  }
+}
+
+/* EDUCATION */
+.edu-row {
+  margin-bottom: 2px;
+}
+
+.edu-school {
+  margin-left: $margin-left-small;
+  font-style: italic;
+  margin-bottom: 2px;
+}
+
+/* SKILLS */
+.skills {
+  margin-left: $margin-left-small;
+  margin-bottom: 2px;
+}
+
+@media print {
+  body {
+    padding: 0.75in;
+  }
+}
