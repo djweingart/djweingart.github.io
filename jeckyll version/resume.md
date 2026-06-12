@@ -6,7 +6,7 @@ title: Resume
 ---
 
 DANIEL J WEINGART
-d.j.weingart@gmail.com | (240) 393-2991
+d.j.weingart@gmail.com 
 
 EXPERIENCE
 2022–         Principal Data Analyst, Digital Analytics
