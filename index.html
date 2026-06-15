@@ -34,7 +34,15 @@
   </div>  
     <div class="sub-section-header">EXPERIENCE</div>
 
-  <div class="job-row"><span class="dates">2022–</span> Principal Data Analyst, Digital Analytics</div>
+  <div class="job-row"><span class="dates">2024–    </span> Principal Data Analyst, Human Resources</div>
+  <div class="employer"><em>Capital One</em>, McLean, VA</div>
+  <ul class="bullets">
+    <li>Owned data and analytics enablement for the HR Risk Office. Developed automations, data products, and dashboards to facilitate the Risk Office's risk management work. 
+    </li> 
+  </ul>
+  <br>
+  
+  <div class="job-row"><span class="dates">2022–2023</span> Principal Data Analyst, Digital Analytics</div>
   <div class="job-row"><span class="dates">2020–2022</span> Senior Data Analyst, Digital Analytics</div>
   <div class="employer"><em>The Washington Post</em>, Washington, DC</div>
   <ul class="bullets">
@@ -113,6 +121,73 @@
       }, { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0 });
 
       sections.forEach(s => observer.observe(s));
+
+      // Collapse bullets on small screens and toggle on tap/hover
+      const bullets = Array.from(document.querySelectorAll('ul.bullets'));
+      const toggleTargets = Array.from(document.querySelectorAll('.job-row, .employer'));
+
+      function findNextBullets(el) {
+        let current = el.nextElementSibling;
+        while (current) {
+          if (current.tagName === 'UL' && current.classList.contains('bullets')) {
+            return current;
+          }
+          if (current.classList.contains('section-header') || current.classList.contains('sub-section-header') || current.classList.contains('section-spacer')) {
+            return null;
+          }
+          current = current.nextElementSibling;
+        }
+        return null;
+      }
+
+      function setMobileBullets() {
+        const isMobile = window.matchMedia('(max-width: 600px)').matches;
+        bullets.forEach(list => {
+          list.classList.remove('expanded');
+          if (isMobile) {
+            list.classList.add('collapsed');
+          } else {
+            list.classList.remove('collapsed');
+          }
+        });
+      }
+
+      function toggleBullets(list) {
+        if (!list) return;
+        if (list.classList.contains('expanded')) {
+          list.classList.remove('expanded');
+          list.classList.add('collapsed');
+        } else {
+          list.classList.add('expanded');
+          list.classList.remove('collapsed');
+        }
+      }
+
+      toggleTargets.forEach(target => {
+        const list = findNextBullets(target);
+        if (!list) return;
+
+        target.addEventListener('click', () => {
+          if (window.matchMedia('(max-width: 600px)').matches) {
+            toggleBullets(list);
+          }
+        });
+
+        target.addEventListener('mouseenter', () => {
+          if (!window.matchMedia('(hover: none)').matches) {
+            list.classList.add('expanded');
+          }
+        });
+
+        target.addEventListener('mouseleave', () => {
+          if (!window.matchMedia('(hover: none)').matches && window.matchMedia('(max-width: 600px)').matches) {
+            list.classList.remove('expanded');
+          }
+        });
+      });
+
+      window.addEventListener('resize', setMobileBullets);
+      setMobileBullets();
     });
   </script>
 </body>
