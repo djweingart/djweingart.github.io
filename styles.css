@@ -2,13 +2,13 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11pt;
+  font-size: 10pt;
   color: #1d1d1d;
-  background: #f7f5f276;
+  background: hwb(36 99% 1%);
   padding: 60px;
-  margin: 0 auto;
+  margin: 60px auto;
   width: 100%;
-  /*max-width: 640px;*/
+  max-width: 760px;
 }
 
 /* NAME */
@@ -25,16 +25,46 @@ body {
   font-size: 12pt;
   font-style: italic;
   font-weight: bold;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.45em;
   margin-bottom: 24px;
-}}
+}
 
 /* SECTION LINK */
 .section-link {
   font-size: 11pt;
   color: #626262;
-  /*margin-left: 56px;*/
   margin-bottom: 14px;
+  position: sticky;
+  top: 0px;
+  background: hwb(36 99% 1%);
+  padding: 10px 0;
+  z-index: 10;
+}
+
+.section-link a {
+  margin-right: 7em;
+  color: #626262;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.section-link a.home-link {
+  margin-right: 1.75em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.section-link a.home-link img {
+  height: 1.3em;
+  width: auto;
+  display: inline-block;
+  filter: grayscale(100%) contrast(100%);
+  transform: translateY(4px);
+}
+
+.section-link a.active {
+  color: #1d1d1d !important;
 }
 
 /* CONTACT */
@@ -43,12 +73,24 @@ body {
   margin-bottom: 14px;
 }
 
+.section-spacer {
+  height: 300px;
+}
 
 /* SECTION HEADERS */
 .section-header {
-  font-size: 12pt;
+  font-size: 11pt;
   font-weight: bold;
-  margin-top: 42px;
+  /*margin-top: 200px;*/
+  margin-bottom: 4px;
+  scroll-margin-top: 90px;
+}
+
+/* SECTION HEADERS */
+.sub-section-header {
+  font-size: 10pt;
+  font-weight: bold;
+  margin-top: 20px;
   margin-bottom: 4px;
 }
 
@@ -65,7 +107,8 @@ body {
 
 /* EMPLOYER LINE — indented, italic */
 .employer {
-  margin-left: 144px;
+  margin-left: 73px;
+  padding-left: 1em;
   font-style: italic;
   margin-bottom: 2px;
 }
@@ -105,12 +148,27 @@ a {
 }
 
 a:hover {
-  color: #000000;
-  text-decoration: underline;
+  color: #1d1d1d;
+  font-weight: bold;
+  /*text-decoration: underline;*/
 }
 
 @media print {
   body { padding: 72px; }
+}
+
+/* subtle full-page grain */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: url("grain.png") repeat;
+  /* stronger but still subtle */
+  /*background-color: rgb(230, 29, 29);*/
+  opacity: 0.22;    /* tweak strength */
+  mix-blend-mode: soft-light;       /* use normal for reliable visibility */
+  z-index: 999;
 }
 
 

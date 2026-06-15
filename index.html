@@ -6,16 +6,19 @@
   <title>Homepage - Daniel J. Weingart</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="top">
 
   <div class="name">DANIEL WEINGART</div>
 
   <div class="subtitle">DIGITAL ANALYTICS PROFESSIONAL</div>
 
   <div class="section-link">
+    <a class="home-link" href="#top" aria-label="Home"><img src="home.png" alt="Home"></a>
     <a href="#contact">CONTACT</a>   
     <a href="#resume">RESUME</a>   
     <a href="#projects">PROJECTS</a></div>
+
+  <div class="section-spacer"></div>
 
   <div class="section-header" id="contact">CONTACT</div>
 
@@ -25,9 +28,92 @@
     <a href="https://www.linkedin.com/in/djweingart/">LinkedIn</a>
   </div>
 
-  <div class="section-header" id="resume">RESUME</div>  
+  <div class="section-spacer"></div>
+
+  <div class="section-header" id="resume">RESUME
+  </div>  
+    <div class="sub-section-header">EXPERIENCE</div>
+
+  <div class="job-row"><span class="dates">2022–</span> Principal Data Analyst, Digital Analytics</div>
+  <div class="job-row"><span class="dates">2020–2022</span> Senior Data Analyst, Digital Analytics</div>
+  <div class="employer"><em>The Washington Post</em>, Washington, DC</div>
+  <ul class="bullets">
+    <li>Pioneered the creation of a customer "year-in-review" experience. Worked with engineers to develop new data environment for this project that combined complex, voluminous, and different varieties of data sources and platforms with Python and Spark.</li>
+    <li>Use Agile methodology to project manage real-time analytics tool which enabled self-service framework for data consumers.</li>
+    <li>Completed a series of deep-dive analyses which mined various data sources and platforms to drive decision-making and problem solving. Queried from data warehouse with SQL and manipulated and automated analysis with Python.</li>
+    <li>Manage security mechanisms and data access governance for Google Marketing Platform. Migrated users to enterprise workspace that ensured two factor authentication.</li>
+  </ul>
+  <br>
+
+  <div class="job-row"><span class="dates">2019–2020</span> Senior Analyst, Business Intelligence</div>
+  <div class="employer"><em>Choice Hotels Intl.</em>, Rockville, MD</div>
+  <ul class="bullets">
+    <li>Develop and implement tests for new initiatives. Analyze performance with SQL and R. Provide consultancy and translate business needs to design and develop tools, statistical techniques, key metrics, and Tableau dashboards that create meaningful insights on business strategies.</li>
+    <li>Project managed migration of customer database by ensuring data governance and data quality management principles are followed including metadata, lineage, and business definitions.</li>
+  </ul>
+  <br>
+
+  <div class="job-row"><span class="dates">2018–2019</span> Senior Analyst, Paid Search</div>
+  <div class="job-row"><span class="dates">2016–2018</span> Analyst, Paid Search</div>
+  <div class="employer"><em>Merkle Inc.</em>, Charlottesville, VA</div>
+  <ul class="bullets">
+    <li>Plan, lead, and execute direct-to-consumer marketing strategy for multiple clients to drive growth, profitability, and competitive success.</li>
+    <li>Combine quantitative data, market research, and targeted insights into annual business reviews for executive leadership which informed future marketing strategy.</li>
+  </ul>
+
+  <div class="sub-section-header">EDUCATION</div>
+
+  <div class="edu-row">2009–2013 Bachelor of Science, Psychology</div>
+  <div class="edu-school"><em>University of Pittsburgh</em>, Pittsburgh, PA</div>
+  <ul class="bullets">
+    <li>Magna Cum Laude, Program Honors in Psychology</li>
+  </ul>
+
+  <div class="sub-section-header">SKILLS</div>
+  <div class="skills">SQL, Python, R, Tableau, JIRA, GitHub, Visual Studio Code, Airflow</div>
+  <div class="skills">Google Analytics, Adobe Analytics, Looker, Google Ads, AWS Redshift</div>
+
+  <div class="section-spacer"></div>
 
   <div class="section-header" id="projects">PROJECTS</div>  
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('#contact, #resume, #projects');
+      const links = document.querySelectorAll('.section-link a[href^="#"]');
+
+      function setActive(id) {
+        links.forEach(link => {
+          link.classList.toggle('active', link.hash === ('#' + id));
+        });
+      }
+
+      // Smooth scroll on click and immediate active state
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.hash.slice(1);
+          if (!targetId) return; // allow default for top if needed
+          const el = document.getElementById(targetId);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setActive(targetId);
+            history.replaceState(null, '', '#' + targetId);
+          }
+        });
+      });
+
+      // Use IntersectionObserver for reliable section detection
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      }, { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0 });
+
+      sections.forEach(s => observer.observe(s));
+    });
+  </script>
 </body>
 </html>
